@@ -1,11 +1,13 @@
 package edu.cascadia.mobile.apps.handlerthread;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -19,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             //TODO: Use the msg object to set the textDisplay value
-
+            int count = (int)msg.obj;
+            textDisplay.setText(String.format(getString(R.string.Ticktock), count));
         }
     };
 
@@ -43,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Message message = Message.obtain();
                     //TODO: Update the message.obj with the current count
+                    message.obj = count;
 
                     //TODO: Send the message to the uiHandler message queue
+                    uiHandler.sendMessage(message);
 
                     //Updates the count by 1
                     count+=1;
