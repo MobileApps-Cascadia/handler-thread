@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Handler Thread</string>
+    <string name="Ticktock">Ticktock %d</string>
 </resources>
