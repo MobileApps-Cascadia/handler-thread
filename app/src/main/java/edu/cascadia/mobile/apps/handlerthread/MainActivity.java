@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(Message msg){
             super.handleMessage(msg);
             //TODO: Use the msg object to set the textDisplay value
-
+            textDisplay.setText(String.valueOf(msg.obj));
         }
     };
 
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Message message = Message.obtain();
                     //TODO: Update the message.obj with the current count
-
+                    message.obj = "tick tock " +  count;
                     //TODO: Send the message to the uiHandler message queue
-
+                    uiHandler.sendMessage(message);
                     //Updates the count by 1
                     count+=1;
                 }
