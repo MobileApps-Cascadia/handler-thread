@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg){
             super.handleMessage(msg);
-            //TODO: Use the msg object to set the textDisplay value
 
+            //TODO: Use the msg object to set the textDisplay value
+            textDisplay.setText(msg.obj.toString());
         }
     };
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         //Create a new HandlerThread
         worker = new Worker();
         worker.execute( new Runnable() {
-            int count=0;
+            int count=1;
             @Override
             public void run() {
                 while(true) { //keep running till the thread stops
@@ -43,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Message message = Message.obtain();
                     //TODO: Update the message.obj with the current count
-
+                    message.obj = count;
                     //TODO: Send the message to the uiHandler message queue
-
+                    uiHandler.sendMessage(message);
                     //Updates the count by 1
                     count+=1;
                 }
@@ -57,5 +58,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy(){
         worker.quitSafely();
         super.onDestroy();
+
     }
 }
